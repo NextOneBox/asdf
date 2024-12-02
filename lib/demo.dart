@@ -152,8 +152,8 @@ class _DemoState extends State<Demo> {
       revealedTiles[index] = true;
       int revealedCount = revealedTiles.where((tile) => tile).length;
 
-      if (!minePositions.contains(true) && revealedCount >= 5) {
-        _placeMines(5);
+      if (!minePositions.contains(true) && revealedCount >= 3) {
+        _placeMines(3);
       }
 
       if (minePositions[index]) {

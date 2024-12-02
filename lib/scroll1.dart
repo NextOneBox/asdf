@@ -4,13 +4,13 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
-class AutoScrollView extends StatefulWidget {
+class AutoScrollView1 extends StatefulWidget {
   @override
-  _AutoScrollViewState createState() => _AutoScrollViewState();
+  _AutoScrollView1State createState() => _AutoScrollView1State();
 }
 dynamic amount;
 
-class _AutoScrollViewState extends State<AutoScrollView> {
+class _AutoScrollView1State extends State<AutoScrollView1> {
   final ScrollController _scrollController = ScrollController();
   final List<Map<String, dynamic>> _users = [];
 
@@ -20,25 +20,36 @@ class _AutoScrollViewState extends State<AutoScrollView> {
     _loadUsers();
   }
 
+
+
   Future<void> _loadUsers() async {
     // Load the JSON file
   final String response = await rootBundle.loadString('Assets/users.json');
     final List<dynamic> data = json.decode(response);
-    data.shuffle(random);
 
     // Parse and generate user data with random amounts
-    setState(() {
-    for (int i = 0; i < min(10, data.length); i++) {
-      final user = data[i];       
-            amount = ((random.nextDouble() * 800) - 200);
+  setState(() {
+    // Shuffle the data for randomness
+    data.shuffle(random);
 
-        final email = user['email'];
+    // Select random users and generate their data
+    for (int i = 0; i < min(10, data.length); i++) {
+      final user = data[i];
+
+      // Generate a random amount between 200 and 1000
+      final double amount = 200 + (random.nextDouble() * 3000);
+
+      // Extract and mask email
+      final String email = user['email'];
+      final String maskedEmail = 
+          '${email.substring(0, min(email.indexOf('@'), 10))}***@${email.split('@')[1]}';
+
+      // Add user info to the list
         _users.add({
-          'email': '${email.substring(0, 7)}***@${email.split('@')[1]} Result: ₹${(amount.toStringAsFixed(2) )}',
-          
-        });
-      }
-    });
+        'email': '\n\n\n\n\n$maskedEmail ₹${amount.toStringAsFixed(2)} \n              Withdrwal Just Now',
+      });
+    }
+  });
 
     // Start auto-scrolling once users are loaded
     _startAutoScroll();
@@ -46,7 +57,7 @@ class _AutoScrollViewState extends State<AutoScrollView> {
     final random = Random();
 
   void _startAutoScroll() {
-    Timer.periodic(Duration(milliseconds: 100), (timer) {
+    Timer.periodic(Duration(milliseconds: 50), (timer) {
       if (_scrollController.hasClients) {
         final maxScroll = _scrollController.position.maxScrollExtent;
         final currentScroll = _scrollController.offset;
@@ -75,6 +86,7 @@ class _AutoScrollViewState extends State<AutoScrollView> {
             reverse: true,
           
               controller: _scrollController,
+              
               itemCount: _users.length,
               scrollDirection:Axis.vertical,
               
@@ -85,7 +97,7 @@ class _AutoScrollViewState extends State<AutoScrollView> {
                   //   child: Text(user['email'][0].toUpperCase()),
                   // ),
                   title: Text(user['email'],style: TextStyle(
-       color:   const Color.fromARGB(255, 176, 241, 139), // Green for positive amounts
+       color:   const Color.fromARGB(255, 6, 68, 16),// Green for positive amounts
         ),),
                   // subtitle: Text('Amount: \₹${user['amount']}',style: TextStyle(color: Colors.white),),
                 );

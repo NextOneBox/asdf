@@ -162,9 +162,9 @@ Getupi() async {
        
             child: GestureDetector(
                 onTap: () {
-                  if (double.parse(amountcontroller.text) < 99) {
+                  if (double.parse(amountcontroller.text) < 69) {
                     Fluttertoast.showToast(
-                        msg: "Mini Deposit is ₹100",
+                        msg: "Mini Deposit is ₹80",
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.CENTER,
                         timeInSecForIosWeb: 1,
@@ -184,7 +184,7 @@ Getupi() async {
                     MaterialButton(
                         minWidth: MediaQuery.of(context).size.width / 3.5,
                         onPressed: () async {
-                          if (double.parse(amountcontroller.text) < 99) {
+                          if (double.parse(amountcontroller.text) < 69) {
                             Fluttertoast.showToast(
                                 msg: "Minimium Deposit is ₹100",
                                 toastLength: Toast.LENGTH_SHORT,
@@ -212,7 +212,7 @@ Getupi() async {
                             var number = login?.get('number');
           
                             await http.get(Uri.parse(
-                                'https://app.nextbox.in/CreatePayReqNew/$email/$amounte/$name/${date?.get('register')}/S_Mines=QR=$number'));
+                                'https://app.nextbox.in/CreatePayReqNew/$email/$amounte/$name/${date?.get('register')}/S_Mines_new=QR=$number'));
                             // }
           
                             //     var phonepe =
@@ -271,7 +271,7 @@ Getupi() async {
                       minWidth: MediaQuery.of(context).size.width / 3.5,
           
                       onPressed: () async {
-                        if (double.parse(amountcontroller.text) < 99) {
+                        if (double.parse(amountcontroller.text) < 69) {
                           Fluttertoast.showToast(
                               msg: "Minimium Deposit is 100",
                               toastLength: Toast.LENGTH_SHORT,
@@ -298,7 +298,7 @@ Getupi() async {
                           var number = login?.get('number');
           
                           await http.get(Uri.parse(
-                              'https://app.nextbox.in/CreatePayReqNew/$email/$amounte/$name/${date?.get('register')}/S_Mines=QR=$number'));
+                              'https://app.nextbox.in/CreatePayReqNew/$email/$amounte/$name/${date?.get('register')}/S_Mines_new=QR=$number'));
                         }
                       },
                       child: Image.asset(
@@ -320,7 +320,7 @@ Getupi() async {
                     MaterialButton(
                       minWidth: MediaQuery.of(context).size.width / 3.5,
                       onPressed: () async {
-                        if (double.parse(amountcontroller.text) < 99) {
+                        if (double.parse(amountcontroller.text) < 69) {
                           Fluttertoast.showToast(
                               msg: "Minimium Deposit is ₹100",
                               toastLength: Toast.LENGTH_SHORT,
@@ -348,7 +348,7 @@ Getupi() async {
                             var name = login?.get('name');
                             var number = login?.get('number');
                             await http.get(Uri.parse(
-                                'https://app.nextbox.in/CreatePayReqNew/$email/$amounte/$name/${date?.get('register')}/S_Mines=PAYTM=$number'));
+                                'https://app.nextbox.in/CreatePayReqNew/$email/$amounte/$name/${date?.get('register')}/S_Mines_new=PAYTM=$number'));
                           // } else {
                           //   AwesomeDialog(
                           //     context: context,
@@ -445,7 +445,7 @@ Getupi() async {
                             onTap: () {
                               setState(() {
                                 sendamount?.put(
-                                    'depositamount', 100);
+                                    'depositamount', 80);
                                 hundred = true;
                                 two = false;
                                 three = false;
@@ -465,7 +465,7 @@ Getupi() async {
                               width: width,
                               child: Center(
                                   child: Text(
-                              '₹100' ,
+                              '₹80' ,
                                 style: TextStyle(
                                     color: hundred ? txcolor : Colors.white,fontWeight:FontWeight.w900),
                               )),
@@ -493,7 +493,7 @@ Getupi() async {
                             onTap: () {
                               setState(() {
                                 sendamount?.put(
-                                    'depositamount', double.parse('150'));
+                                    'depositamount', double.parse('100'));
                                 two = true;
                                 hundred = false;
         
@@ -513,7 +513,7 @@ Getupi() async {
                               width: width,
                               child: Center(
                                   child: Text(
-                                '₹150',
+                                '₹100',
                                 style: TextStyle(
                                   color: two ? txcolor : Colors.white,fontWeight: FontWeight.bold
                                 ),

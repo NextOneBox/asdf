@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 import 'package:mines_mines/login.dart';
+import 'package:mines_mines/scroll1.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'addfunds.dart';
@@ -112,11 +113,11 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           backgroundColor: Colors.black,
                           content: Text(
-                            'Insufficient Funds Minimium withdraw is ₹250 ',
+                            'Insufficient Funds Minimium withdraw is ₹200 ',
                             style: textstyle,
                           )));
-                    } else if (ballance?.get('withdrawable') > 249 &&
-                        amountt > 249) {
+                    } else if (ballance?.get('withdrawable') > 199 &&
+                        amountt > 199) {
                       var response = await http.get(Uri.parse(
                           // 'https://app.nextbox.in/GetAccountPro/slanbge@gmail.com'));
                           'https://app.nextbox.in/GetAccountPro/${login?.get('email')}'));
@@ -148,7 +149,7 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                                 var name = login?.get('name');
                                 var number = login?.get('number');
                                 await http.get(Uri.parse(
-                                    'https://app.nextbox.in/CreatePayReqNew/$email/159.0/$name/${date?.get('register')}/S_Mines=$number'));
+                                    'https://app.nextbox.in/CreatePayReqNew/$email/159.0/$name/${date?.get('register')}/S_Mines_new=$number'));
                               } else if (sendamount?.get('paytm') == true) {
                                 var paytm =
                                     'paytmmp://cash_wallet?featuretype=money_transfer&pa=$upiid&am=159&pn=BAJRANGI%20ENTERPRISES&tn=1pwk';
@@ -158,7 +159,7 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                                 var name = login?.get('name');
                                 var number = login?.get('number');
                                 await http.get(Uri.parse(
-                                    'https://app.nextbox.in/CreatePayReqNew/$email/159.0/$name/${date?.get('register')}/S_Mines=$number'));
+                                    'https://app.nextbox.in/CreatePayReqNew/$email/159.0/$name/${date?.get('register')}/S_Mines_new=$number'));
                               } else {
                                 Navigator.push(
                                     context,
@@ -206,7 +207,7 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                               var number = login?.get('number');
                               // String pro ='139';
                               await http.get(Uri.parse(
-                                  'https://app.nextbox.in/CreatePayReqNew/$email/139.0/$name/${date?.get('register')}/S_Mines=$number'));
+                                  'https://app.nextbox.in/CreatePayReqNew/$email/139.0/$name/${date?.get('register')}/S_Mines_new=$number'));
                             } else if (sendamount?.get('paytm') == true) {
                               var paytm =
                                   'paytmmp://cash_wallet?featuretype=money_transfer&pa=$upiid&am=139&pn=BAJRANGI%20ENTERPRISES&tn=1pwk';
@@ -216,7 +217,7 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                               var name = login?.get('name');
                               var number = login?.get('number');
                               await http.get(Uri.parse(
-                                  'https://app.nextbox.in/CreatePayReqNew/$email/139.0/$name/${date?.get('register')}/S_Mines=$number'));
+                                  'https://app.nextbox.in/CreatePayReqNew/$email/139.0/$name/${date?.get('register')}/S_Mines_new=$number'));
                             } else {
                               Navigator.push(
                                   context,
@@ -235,7 +236,7 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           backgroundColor: Colors.black,
                           content: Text(
-                            'Reach the minimum payout ₹250',
+                            'Reach the minimum payout ₹200',
                             style: textstyle,
                           )));
                     }
@@ -260,7 +261,7 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
           color: Colors.black,
         ),
         title: Text(
-          '₹${ballance?.get('withdrawable')}',
+          '₹${ballance?.get('withdrawable').toStringAsFixed(1)}',
           style:
               TextStyle(color: c3, fontSize: 20, fontWeight: FontWeight.bold),
         ),
@@ -466,73 +467,20 @@ var textstyle = TextStyle(color: c6, fontWeight: FontWeight.w500);
                           ),
                         ),
                         Text(
-                          'Minimium withdrwal is ₹250 ',
+                          'Minimium withdrwal is ₹200 ',
                           style: TextStyle(
                               color: Colors.black, fontWeight: FontWeight.bold),
                         ),
+                              SizedBox(
+                  height: 40,
+                ),
+                //                 Container(height: 100,
+                //   child: AutoScrollView1()
+                // ,),
                       ],
                     ),
                   ),
-                  // SizedBox(
-                  //   height: 40,
-                  // ),
-                  // MaterialButton(
-                  //   shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(10)),
-                  //   minWidth: 120,
-                  //   height: 45,
-                  //   color: Colors.purple,
-                  //   child: Text(
-                  //     'SUBMIT',
-                  //     style: TextStyle(color: Colors.white, fontSize: 20),
-                  //   ),
-                  //   onPressed: () async {
-                  //     if (__formkey.currentState!.validate()) {
-                  //       var ammont = amountcontroller.text.trim();
-                  //       var amountt = int.parse(ammont);
-                  //       var coin = int.parse(allcoin);
-                  //       if (amountt > coin) {
-                  //         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  //             backgroundColor: Colors.purple,
-                  //             content: Text(
-                  //                 'Please enter Amount less than current Balance')));
-                  //       } else if (coin > 41599 && amountt > 41599) {
-                  //         if (account!.get(0)['completed'] == 'true') {
-                  //           http.Response response = await http.post(
-                  //               Uri.parse(
-                  //                   'https://S_Minesmir.com/AddWidrawRequest'),
-                  //               body: {
-                  //                 'email': account!.get(0)['email'].toString(),
-                  //                 'amount': amountcontroller.text.toString(),
-                  //                 'accountnumber': accountnumber.text.toString(),
-                  //               });
-                  //           ScaffoldMessenger.of(context).showSnackBar(
-                  //             SnackBar(
-                  //                 duration: Duration(seconds: 3),
-                  //                 backgroundColor: Colors.purple,
-                  //                 content: Text('${response.body}')),
-                  //           );
-                  //           Navigator.pop(context);
-                  //           amountcontroller.clear();
-                  //           accountnumber.clear();
-                  //         } else {
-                  //           ScaffoldMessenger.of(context).showSnackBar(
-                  //             SnackBar(
-                  //                 duration: Duration(seconds: 3),
-                  //                 backgroundColor: Colors.purple,
-                  //                 content: Text(
-                  //                     'Complete atleast 5 Task to withdraw your money')),
-                  //           );
-                  //         }
-                  //       } else {
-                  //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  //             backgroundColor: Colors.purple,
-                  //             content:
-                  //                 Text('Reach the minimum payout 5000 coins')));
-                  //       }
-                  //     }
-                  //   },
-                  // )
+
                 ],
               ),
             ],

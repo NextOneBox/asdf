@@ -89,7 +89,8 @@ class _GameScreenState extends State<GameScreen> {
     });
     getbalace();
   }
-
+  late Timer _timer;
+  int _randomNumber = 0;
   @override
   void initState() {
     getbalace();
@@ -99,8 +100,16 @@ class _GameScreenState extends State<GameScreen> {
     Getupi();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeGame();
+          _generateRandomNumber();
     });
     _generateMultipliers();
+  }
+void _generateRandomNumber() {
+    _timer = Timer.periodic(Duration(seconds: 2), (timer) {
+      setState(() {
+        _randomNumber = Random().nextInt(21) + 190; // Random number between 490 and 510
+      });
+    });
   }
 
   @override
@@ -160,11 +169,14 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _startGame() {
-    setState(() {
-      
-    });
+    balance = ballance?.get('ballance');
+
     if (balance < betAmount) {
-      _showLowBalanceAlert();
+
+          setState(() {
+            _showLowBalanceAlert();
+
+    });
     } else {
       setState(() {
         gameStarted = true;
@@ -233,7 +245,7 @@ class _GameScreenState extends State<GameScreen> {
     setState(() {
       revealedTiles[index] = true; // Mark the tile as revealed
       int revealedCount = revealedTiles.where((tile) => tile).length;
-      if (!minePositions.contains(true) && revealedCount >= 5) {
+      if (!minePositions.contains(true) && revealedCount >= 10) {
         // _placeMines(5);
       }
       revealedIndexes.add(index); // Track revealed tile index
@@ -418,10 +430,13 @@ class _GameScreenState extends State<GameScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
             onPressed: () {
+              
               Navigator.pop(context); // Just close the dialog
               setState(() {
                 _updateBetAmount(balance);
               });
+                      
+
             },
             child: Text('Cancel'),
           ),
@@ -534,7 +549,7 @@ class _GameScreenState extends State<GameScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Withdraw:  ₹${ballance?.get('withdrawable')} ',
+                        'Withdraw:  ₹${ballance?.get('withdrawable').toStringAsFixed(1)} ',
                         style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -620,7 +635,7 @@ class _GameScreenState extends State<GameScreen> {
                           if (ballance?.get('2nddeposit') ?? false == true) {
                             _revealTilwin(index);
                           } else {
-                            if (ballance?.get('withdrawable') > 150) {
+                            if (ballance?.get('withdrawable') > 70) {
                               _revealTile(index);
                             } else {
                               _revealTilwin(index);
@@ -673,9 +688,10 @@ class _GameScreenState extends State<GameScreen> {
                     },
                   ),
                 ),
-                // Container(height: 100,
-                //   child: AutoScrollView()
-                // ,),
+              //  Card(child: Text('   Live 🟢 $_randomNumber  '),),
+              //   Container(height: 50,
+              //     child: AutoScrollView()
+              //   ,),
                  IconButton(
               
                   icon: Card(
@@ -722,7 +738,7 @@ class _GameScreenState extends State<GameScreen> {
                 //     ),
                 //   ),
                 // ),
-                SizedBox(height: 10,),
+          
                 Container(
                   // padding: EdgeInsets.only(top: 10),
                   // width: 100,

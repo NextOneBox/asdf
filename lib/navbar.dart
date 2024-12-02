@@ -21,7 +21,7 @@ class _BottomappState extends State<Bottomapp> {
   //     TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   var pagesdata = [
        GameScreen(),
-       Demo(),
+      //  Demo(),
       Deposit_page(),
       ReferFriend(),
       withdrawal(),
@@ -66,10 +66,10 @@ class _BottomappState extends State<Bottomapp> {
                 icon: FontAwesomeIcons.home,
                 text: 'Home',
               ),
-               GButton(
-                icon: FontAwesomeIcons.exclamationCircle,
-                text: 'Demo',
-              ),
+              //  GButton(
+              //   icon: FontAwesomeIcons.exclamationCircle,
+              //   text: 'Demo',
+              // ),
                GButton(
                 icon: FontAwesomeIcons.moneyBill,
                 text: 'Add',
